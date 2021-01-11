@@ -44,8 +44,8 @@ function App() {
           images={images}
           visibleCount={10}
           interval={1000}
-          animationItemcount={4}
-          randomized={false}
+          animationItemcount={2}
+          randomized={true}
           isActive={true}
         />
       </div>
