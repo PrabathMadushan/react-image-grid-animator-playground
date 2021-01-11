@@ -58,7 +58,7 @@ function App() {
             <Button
               onClick={() => setIsActive(!isActive)}
               intent={isActive ? "danger" : "primary"}
-              rightIcon={isActive ? "stop" : "arrow-right"}
+              rightIcon={isActive ? "stop" : "play"}
             >
               {isActive ? "Stop" : "Start"}
             </Button>
