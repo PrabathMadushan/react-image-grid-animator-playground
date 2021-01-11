@@ -3,6 +3,7 @@ import "./styles.scss";
 
 interface IProps {
   image: string;
+  transitionDuration: number;
 }
 
 const Item = (props: IProps) => {
@@ -19,7 +20,11 @@ const Item = (props: IProps) => {
 
   return (
     <div className={show ? "item show" : "item hide"}>
-      <img src={imageStste} alt="" />
+      <img
+        src={imageStste}
+        alt=""
+        style={{ transitionDuration: `${props.transitionDuration}ms` }}
+      />
     </div>
   );
 };

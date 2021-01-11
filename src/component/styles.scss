@@ -15,17 +15,21 @@
         align-items: center;
         img{
             width: 100%;
-            transition: opacity 500ms;
+            transition-property: all;
         }
     }
 
     .hide{
         img{
-        opacity: 0;}
+        opacity: 0;
+        transform: scale(0);
+    }
     }
 
     .show{
         img{
-        opacity: 1;}
+        opacity: 1;
+        transform: scale(1);
+    }
     }
 }

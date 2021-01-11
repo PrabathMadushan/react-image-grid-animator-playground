@@ -10,6 +10,7 @@ interface IProps {
   animationItemcount?: number;
   randomized?: boolean;
   isActive?: boolean;
+  transitionDuration: number;
 }
 
 interface IItem {
@@ -89,7 +90,11 @@ const BrandPanel = (props: IProps) => {
     <div>
       <div className="brand-animation-wraper">
         {visibles.map((item, index) => (
-          <Item key={index} image={item.image} />
+          <Item
+            transitionDuration={props.transitionDuration}
+            key={index}
+            image={item.image}
+          />
         ))}
       </div>
     </div>

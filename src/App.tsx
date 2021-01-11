@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import "react-slideshow-image/dist/styles.css";
 import BrandPanel from "./component/BrandPanel";
@@ -37,17 +37,27 @@ function App() {
     i15,
   ];
 
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <div className="App">
-      <div className="image-container">
-        <BrandPanel
-          images={images}
-          visibleCount={10}
-          interval={1000}
-          animationItemcount={2}
-          randomized={true}
-          isActive={true}
-        />
+    <div>
+      <div>
+        <button onClick={() => setIsActive(!isActive)}>
+          {isActive ? "Stop" : "Start"}
+        </button>
+      </div>
+      <div className="App">
+        <div className="image-container">
+          <BrandPanel
+            images={images}
+            visibleCount={10}
+            interval={1000}
+            animationItemcount={2}
+            transitionDuration={500}
+            randomized={true}
+            isActive={isActive}
+          />
+        </div>
       </div>
     </div>
   );
