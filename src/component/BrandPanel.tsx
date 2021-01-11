@@ -21,6 +21,7 @@ const BrandPanel = (props: IProps) => {
   const [invisibles, setInvisibles] = useState<IItem[]>([]);
 
   const { isActive: isActiveProp } = props;
+
   useEffect(() => {
     const items: IItem[] = props.images.map((image) => ({ image }));
     const invs: IItem[] = [];
@@ -33,7 +34,6 @@ const BrandPanel = (props: IProps) => {
         vs.push(item);
       }
     });
-
     setVisibles(vs);
     setInvisibles(invs);
   }, [props.images, props.visibleCount]);
@@ -50,7 +50,7 @@ const BrandPanel = (props: IProps) => {
       setVisibles([...visibles]);
       setInvisibles([...invisibles]);
     }
-  }, 100);
+  }, props.interval);
 
   useEffect(() => {
     if (isActiveProp) {

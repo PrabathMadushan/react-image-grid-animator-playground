@@ -43,7 +43,7 @@ function App() {
         <BrandPanel
           images={images}
           visibleCount={10}
-          interval={2000}
+          interval={1000}
           animationItemcount={4}
           randomized={false}
           isActive={true}
