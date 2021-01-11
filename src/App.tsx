@@ -53,7 +53,7 @@ function App() {
             visibleCount={10}
             interval={1000}
             animationItemcount={2}
-            transitionDuration={500}
+            transitionDuration={200}
             randomized={true}
             isActive={isActive}
           />

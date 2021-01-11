@@ -15,8 +15,8 @@ const Item = (props: IProps) => {
     setTimeout(() => {
       setImageState(image);
       setShow(true);
-    }, 500);
-  }, [image]);
+    }, props.transitionDuration);
+  }, [image, props.transitionDuration]);
 
   return (
     <div className={show ? "item show" : "item hide"}>
