@@ -17,6 +17,13 @@ import i12 from "./logos/12.png";
 import i13 from "./logos/13.svg";
 import i14 from "./logos/14.svg";
 import i15 from "./logos/15.png";
+import {
+  Button,
+  FormGroup,
+  InputGroup,
+  Label,
+  NumericInput,
+} from "@blueprintjs/core";
 
 function App() {
   const images = [
@@ -40,13 +47,76 @@ function App() {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div>
-      <div>
-        <button onClick={() => setIsActive(!isActive)}>
-          {isActive ? "Stop" : "Start"}
-        </button>
+    <div className="app bp3-dark ">
+      <div className="controllers">
+        <div className="c-card">
+          <div
+            className="i-group"
+            style={{ display: "flex", justifyContent: "center", width: "100%" }}
+          >
+            <Button
+              onClick={() => setIsActive(!isActive)}
+              intent={isActive ? "danger" : "primary"}
+              rightIcon={isActive ? "stop" : "arrow-right"}
+            >
+              {isActive ? "Stop" : "Start"}
+            </Button>
+          </div>
+          <div className="i-group">
+            <Label>Visible Count:</Label>
+            <NumericInput
+              id="text-input"
+              min={1}
+              placeholder="Placeholder text"
+            />
+          </div>
+          <div className="i-group">
+            <Label>Visible Count:</Label>
+            <NumericInput
+              id="text-input"
+              min={1}
+              placeholder="Placeholder text"
+            />
+          </div>
+          <div className="i-group">
+            <Label>Visible Count:</Label>
+            <NumericInput
+              id="text-input"
+              min={1}
+              placeholder="Placeholder text"
+            />
+          </div>
+          <div className="i-group">
+            <Label>Visible Count:</Label>
+            <NumericInput
+              id="text-input"
+              min={1}
+              placeholder="Placeholder text"
+            />
+          </div>
+          <div className="i-group">
+            <Label>Visible Count:</Label>
+            <NumericInput
+              id="text-input"
+              min={1}
+              placeholder="Placeholder text"
+            />
+          </div>
+        </div>
       </div>
-      <div className="App">
+
+      <div className="main-container">
+        <div className="image-container">
+          <BrandPanel
+            images={images}
+            visibleCount={10}
+            interval={1000}
+            animationItemcount={2}
+            transitionDuration={200}
+            randomized={true}
+            isActive={isActive}
+          />
+        </div>
         <div className="image-container">
           <BrandPanel
             images={images}

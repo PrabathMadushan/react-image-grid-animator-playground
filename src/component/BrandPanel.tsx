@@ -48,18 +48,15 @@ const BrandPanel = (props: IProps) => {
         : (props.animationItemcount || 5) > 5
         ? 5
         : props.animationItemcount || 5;
-      console.log(oneTimeCount);
       let r_array01 = [],
         r_array02 = [];
       for (let i: number = 0; i < visibles.length; i++) r_array01.push(i);
       for (let i: number = 0; i < invisibles.length; i++) r_array02.push(i);
       shuffleArray(r_array01);
       shuffleArray(r_array02);
-      // console.log(r_array01, r_array02);
       for (let i: number = 0; i < oneTimeCount; i++) {
         const r1 = r_array01[i];
         const r2 = r_array02[i];
-        // console.log(r1, r2);
         const i1 = visibles[r1];
         const i2 = invisibles[r2];
         visibles[r1] = i2;

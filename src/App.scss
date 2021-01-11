@@ -1,9 +1,40 @@
-.App{
-    display: flex;    
-    justify-content: center;
-    padding-top: 20px;
-    .image-container{
-        width: 70%;
-        // border: solid 2px #333;
+
+.app{
+    .controllers{
+        display: flex;    
+        justify-content: center;
+        padding: 20px;
+        .c-card{
+            width: 50%;
+            background-color: #394b59;
+            border-radius: 5px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border: solid #293742 1px;
+        }
+    }
+    .main-container{
+        display: flex;    
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+       
+        flex-direction: column;
+        .image-container{
+            width: 70%;
+            margin-top: 20px;
+            background-color: #f5f8fa;
+            border-radius: 5px;
+            // border: solid 2px #333;
+        }
     }
 }
+
+button{
+    outline:none !important;
+  }
+button::-moz-focus-inner {
+    border: 0 !important;
+  }
