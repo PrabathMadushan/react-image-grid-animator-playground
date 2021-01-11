@@ -40,7 +40,14 @@ function App() {
   return (
     <div className="App">
       <div className="image-container">
-        <BrandPanel images={images} visibleCount={10} />
+        <BrandPanel
+          images={images}
+          visibleCount={10}
+          interval={2000}
+          animationItemcount={4}
+          randomized={false}
+          isActive={true}
+        />
       </div>
     </div>
   );
