@@ -17,13 +17,7 @@ import i12 from "./logos/12.png";
 import i13 from "./logos/13.svg";
 import i14 from "./logos/14.svg";
 import i15 from "./logos/15.png";
-import {
-  Button,
-  FormGroup,
-  InputGroup,
-  Label,
-  NumericInput,
-} from "@blueprintjs/core";
+import { Button, Checkbox, Label, NumericInput } from "@blueprintjs/core";
 
 function App() {
   const images = [
@@ -45,6 +39,13 @@ function App() {
   ];
 
   const [isActive, setIsActive] = useState(false);
+  const [state, setState] = useState({
+    visibleCount: 10,
+    interval: 1000,
+    animationItemcount: 2,
+    transitionDuration: 200,
+    randomized: true,
+  });
 
   return (
     <div className="app bp3-dark ">
@@ -66,40 +67,61 @@ function App() {
             <Label>Visible Count:</Label>
             <NumericInput
               id="text-input"
+              value={state.visibleCount}
               min={1}
+              max={images.length - 1}
               placeholder="Placeholder text"
+              onValueChange={(e) => {
+                console.log(e);
+                setState({ ...state, visibleCount: e });
+              }}
             />
           </div>
           <div className="i-group">
-            <Label>Visible Count:</Label>
+            <Label>interval:</Label>
             <NumericInput
               id="text-input"
-              min={1}
+              value={state.interval}
+              min={100}
               placeholder="Placeholder text"
+              onValueChange={(e) => {
+                setState({ ...state, interval: e });
+              }}
             />
           </div>
           <div className="i-group">
-            <Label>Visible Count:</Label>
+            <Label>Animation Item count:</Label>
             <NumericInput
               id="text-input"
+              value={state.animationItemcount}
               min={1}
+              max={images.length - state.visibleCount}
               placeholder="Placeholder text"
+              onValueChange={(e) => {
+                setState({ ...state, animationItemcount: e });
+              }}
             />
           </div>
           <div className="i-group">
-            <Label>Visible Count:</Label>
+            <Label>Transition Duration:</Label>
             <NumericInput
               id="text-input"
               min={1}
+              value={state.transitionDuration}
+              max={state.interval / 2}
               placeholder="Placeholder text"
+              onValueChange={(e) => {
+                setState({ ...state, transitionDuration: e });
+              }}
             />
           </div>
           <div className="i-group">
-            <Label>Visible Count:</Label>
-            <NumericInput
-              id="text-input"
-              min={1}
-              placeholder="Placeholder text"
+            <Checkbox
+              checked={state.randomized}
+              label="Randomized"
+              onChange={(e: any) => {
+                setState({ ...state, randomized: e.target.checked });
+              }}
             />
           </div>
         </div>
@@ -109,11 +131,11 @@ function App() {
         <div className="image-container">
           <BrandPanel
             images={images}
-            visibleCount={10}
-            interval={1000}
-            animationItemcount={2}
-            transitionDuration={200}
-            randomized={true}
+            visibleCount={state.visibleCount}
+            interval={state.interval}
+            animationItemcount={state.animationItemcount}
+            transitionDuration={state.transitionDuration}
+            randomized={state.randomized}
             isActive={isActive}
           />
         </div>
