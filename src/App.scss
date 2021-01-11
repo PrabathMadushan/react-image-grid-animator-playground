@@ -1,0 +1,9 @@
+.App{
+    display: flex;    
+    justify-content: center;
+    padding-top: 20px;
+    .image-container{
+        width: 700px;
+        border: solid 2px #333;
+    }
+}

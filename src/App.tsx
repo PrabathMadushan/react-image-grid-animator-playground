@@ -1,43 +1,46 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import "react-slideshow-image/dist/styles.css";
-import image1 from "./1.jpg";
-import image2 from "./2.jpg";
-import image3 from "./3.jpg";
-import { Fade } from "react-slideshow-image";
+import BrandPanel from "./component/BrandPanel";
+import i1 from "./logos/1.png";
+import i2 from "./logos/2.png";
+import i3 from "./logos/3.png";
+import i4 from "./logos/4.png";
+import i5 from "./logos/5.png";
+import i6 from "./logos/6.png";
+import i7 from "./logos/7.png";
+import i8 from "./logos/8.png";
+import i9 from "./logos/9.png";
+import i10 from "./logos/10.png";
+import i11 from "./logos/11.png";
+import i12 from "./logos/12.png";
+import i13 from "./logos/13.svg";
+import i14 from "./logos/14.svg";
+import i15 from "./logos/15.png";
 
 function App() {
+  const images = [
+    i1,
+    i2,
+    i3,
+    i4,
+    i5,
+    i6,
+    i7,
+    i8,
+    i9,
+    i10,
+    i11,
+    i12,
+    i13,
+    i14,
+    i15,
+  ];
+
   return (
     <div className="App">
-      <div className="brand-slider">
-        <div style={{ width: "700px", height: "600px" }}>
-          <h2>Fade Effect</h2>
-          <div className="slide-container">
-            <Fade
-              duration={2000}
-              infinite
-              indicators={false}
-              arrows={false}
-              transitionDuration={1000}
-            >
-              <div className="each-fade">
-                <div>
-                  <img alt="" src={image1} />
-                </div>
-              </div>
-              <div className="each-fade">
-                <div>
-                  <img alt="" src={image2} />
-                </div>
-              </div>
-              <div className="each-fade">
-                <div>
-                  <img alt="" src={image3} />
-                </div>
-              </div>
-            </Fade>
-          </div>
-        </div>
+      <div className="image-container">
+        <BrandPanel images={images} visibleCount={10} />
       </div>
     </div>
   );
