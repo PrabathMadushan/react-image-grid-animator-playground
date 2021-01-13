@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.scss";
 import "react-slideshow-image/dist/styles.css";
-import BrandPanel from "./component/BrandPanel";
+// import BrandPanel from "./component/BrandPanel";
 import i1 from "./logos/1.png";
 import i2 from "./logos/2.png";
 import i3 from "./logos/3.png";
@@ -18,6 +18,10 @@ import i13 from "./logos/13.svg";
 import i14 from "./logos/14.svg";
 import i15 from "./logos/15.png";
 import { Button, Checkbox, Label, NumericInput } from "@blueprintjs/core";
+import { CopyBlock, dracula } from "react-code-blocks";
+import { Col, Container, Row } from "react-bootstrap";
+
+import ImageGrid from "react-image-grid-animator";
 
 function App() {
   const images = [
@@ -48,88 +52,147 @@ function App() {
   });
 
   return (
-    <div className="app bp3-dark ">
-      <div className="controllers">
-        <div className="c-card">
-          <div
-            className="i-group"
-            style={{ display: "flex", justifyContent: "center", width: "100%" }}
-          >
-            <Button
-              onClick={() => setIsActive(!isActive)}
-              intent={isActive ? "danger" : "primary"}
-              rightIcon={isActive ? "stop" : "play"}
+    <Container fluid className="app bp3-dark ">
+      <Row className="mt-3">
+        <Col xs={12} className="text-center">
+          <h2>React Image Grid Animator</h2>
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-3">
+        <Col xs={12} md={6} className="px-0">
+          <Label>How to install</Label>
+          <CopyBlock
+            text={`npm install react-image-grid-animator`}
+            language="javascript"
+            showLineNumbers={false}
+            theme={dracula}
+            codeBlock={true}
+          />
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-3">
+        <Col xs={12} md={6} className="px-0">
+          <Label>Usage</Label>
+          <CopyBlock
+            text={`import ImageGrid from "react-image-grid-animator";`}
+            language="javascript"
+            showLineNumbers={false}
+            theme={dracula}
+            codeBlock={true}
+          />
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-3">
+        <Col xs={12} md={6}>
+          <Label>Play ground</Label>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col xs={12} md={6} className="d-flex justify-content-end">
+          <div className="c-card">
+            <div className="i-group">
+              <Label>Visible Count:</Label>
+              <NumericInput
+                id="text-input"
+                value={state.visibleCount}
+                min={1}
+                placeholder="Placeholder text"
+                onValueChange={(e) => {
+                  console.log(e);
+                  if (e < images.length && e > 0) {
+                    setState({ ...state, visibleCount: e });
+                  }
+                }}
+              />
+            </div>
+            <div className="i-group">
+              <Label>interval:</Label>
+              <NumericInput
+                id="text-input"
+                value={state.interval}
+                min={100}
+                placeholder="Placeholder text"
+                onValueChange={(e) => {
+                  setState({ ...state, interval: e });
+                }}
+              />
+            </div>
+            <div className="i-group">
+              <Label>Animation Item count:</Label>
+              <NumericInput
+                id="text-input"
+                value={state.animationItemcount}
+                min={1}
+                placeholder="Placeholder text"
+                disabled={state.randomized}
+                onValueChange={(e) => {
+                  setState({ ...state, animationItemcount: e });
+                }}
+              />
+            </div>
+            <div className="i-group">
+              <Label>Transition Duration:</Label>
+              <NumericInput
+                id="text-input"
+                min={1}
+                value={state.transitionDuration}
+                placeholder="Placeholder text"
+                onValueChange={(e) => {
+                  setState({ ...state, transitionDuration: e });
+                }}
+              />
+            </div>
+            <div className="i-group">
+              <Checkbox
+                checked={state.randomized}
+                label="Randomized"
+                onChange={(e: any) => {
+                  setState({ ...state, randomized: e.target.checked });
+                }}
+              />
+            </div>
+            <div
+              className="i-group"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
             >
-              {isActive ? "Stop" : "Start"}
-            </Button>
+              <Button
+                onClick={() => setIsActive(!isActive)}
+                intent={isActive ? "danger" : "primary"}
+                rightIcon={isActive ? "stop" : "play"}
+              >
+                {isActive ? "Stop" : "Start"}
+              </Button>
+            </div>
           </div>
-          <div className="i-group">
-            <Label>Visible Count:</Label>
-            <NumericInput
-              id="text-input"
-              value={state.visibleCount}
-              min={1}
-              max={images.length - 1}
-              placeholder="Placeholder text"
-              onValueChange={(e) => {
-                console.log(e);
-                setState({ ...state, visibleCount: e });
-              }}
+        </Col>
+        <Col xs={12} md={6} className="d-flex justify-content-start">
+          <div className="c-card">
+            <CopyBlock
+              text={`<ImageGrid 
+    images = {images}
+    visibleCount = {${state.visibleCount}}
+    interval = {${state.interval}}
+    animationItemcount = {${state.animationItemcount}}
+    transitionDuration = {${state.transitionDuration}}
+    randomized = {${state.randomized}}
+    isActive = {${isActive}} 
+/>`}
+              language="html"
+              showLineNumbers={true}
+              theme={dracula}
+              codeBlock={true}
             />
           </div>
-          <div className="i-group">
-            <Label>interval:</Label>
-            <NumericInput
-              id="text-input"
-              value={state.interval}
-              min={100}
-              placeholder="Placeholder text"
-              onValueChange={(e) => {
-                setState({ ...state, interval: e });
-              }}
-            />
-          </div>
-          <div className="i-group">
-            <Label>Animation Item count:</Label>
-            <NumericInput
-              id="text-input"
-              value={state.animationItemcount}
-              min={1}
-              max={images.length - state.visibleCount}
-              placeholder="Placeholder text"
-              onValueChange={(e) => {
-                setState({ ...state, animationItemcount: e });
-              }}
-            />
-          </div>
-          <div className="i-group">
-            <Label>Transition Duration:</Label>
-            <NumericInput
-              id="text-input"
-              min={1}
-              value={state.transitionDuration}
-              max={state.interval / 2}
-              placeholder="Placeholder text"
-              onValueChange={(e) => {
-                setState({ ...state, transitionDuration: e });
-              }}
-            />
-          </div>
-          <div className="i-group">
-            <Checkbox
-              checked={state.randomized}
-              label="Randomized"
-              onChange={(e: any) => {
-                setState({ ...state, randomized: e.target.checked });
-              }}
-            />
-          </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
 
       <div className="main-container">
         <div className="image-container">
-          <BrandPanel
+          <ImageGrid
             images={images}
             visibleCount={state.visibleCount}
             interval={state.interval}
@@ -140,18 +203,18 @@ function App() {
           />
         </div>
         <div className="image-container">
-          <BrandPanel
+          <ImageGrid
             images={images}
-            visibleCount={10}
-            interval={1000}
-            animationItemcount={2}
-            transitionDuration={200}
-            randomized={true}
+            visibleCount={state.visibleCount}
+            interval={state.interval}
+            animationItemcount={state.animationItemcount}
+            transitionDuration={state.transitionDuration}
+            randomized={state.randomized}
             isActive={isActive}
           />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

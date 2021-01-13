@@ -1,20 +1,6 @@
 
 .app{
-    .controllers{
-        display: flex;    
-        justify-content: center;
-        padding: 20px;
-        .c-card{
-            width: 50%;
-            background-color: #394b59;
-            border-radius: 5px;
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            border: solid #293742 1px;
-        }
-    }
+   
     .main-container{
         display: flex;    
         justify-content: center;
@@ -38,3 +24,14 @@ button{
 button::-moz-focus-inner {
     border: 0 !important;
   }
+
+  .c-card{
+    width: 50%;
+    background-color: #394b59;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: solid #293742 1px;
+}

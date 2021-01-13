@@ -1,9 +1,10 @@
 @import "~normalize.css";
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 body{
-  background-color: #30404d;
+  background-color: #30404d !important; 
 }
 
 label{
@@ -13,6 +14,8 @@ label{
 .i-group{
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
+.sc-gsTCUz{
+  width: 100%;
+}
