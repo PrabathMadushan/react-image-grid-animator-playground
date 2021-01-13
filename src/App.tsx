@@ -181,7 +181,7 @@ function App() {
     randomized = {${state.randomized}}
     isActive = {${isActive}} 
 />`}
-              language="html"
+              language="javascript"
               showLineNumbers={true}
               theme={dracula}
               codeBlock={true}
