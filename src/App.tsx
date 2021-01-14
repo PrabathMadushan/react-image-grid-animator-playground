@@ -17,11 +17,10 @@ import i12 from "./logos/12.png";
 import i13 from "./logos/13.svg";
 import i14 from "./logos/14.svg";
 import i15 from "./logos/15.png";
-import { Button, Checkbox, Label, NumericInput } from "@blueprintjs/core";
+import { Button, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
-
-import ImageGrid from "react-image-grid-animator";
+import TestImageGrid from "./component/index";
 
 function App() {
   const images = [
@@ -42,25 +41,24 @@ function App() {
     i15,
   ];
 
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
   const [state, setState] = useState({
     visibleCount: 10,
-    interval: 1000,
-    animationItemcount: 2,
+    interval: 2000,
+    animationItemcount: 0,
     transitionDuration: 200,
-    randomized: true,
   });
 
   return (
-    <Container fluid className="app bp3-dark ">
+    <Container fluid className="app bp3-dark pb-5">
       <Row className="mt-3">
         <Col xs={12} className="text-center">
           <h2>React Image Grid Animator</h2>
         </Col>
       </Row>
       <Row className="justify-content-center mt-3">
-        <Col xs={12} md={6} className="px-0">
-          <Label>How to install</Label>
+        <Col xs={12} lg={7} className="px-lg-0">
+          <Label className="mb-2">How to install</Label>
           <CopyBlock
             text={`npm install react-image-grid-animator`}
             language="javascript"
@@ -71,8 +69,8 @@ function App() {
         </Col>
       </Row>
       <Row className="justify-content-center mt-3">
-        <Col xs={12} md={6} className="px-0">
-          <Label>Usage</Label>
+        <Col xs={12} lg={7} className="px-lg-0">
+          <Label className="mb-2">Usage</Label>
           <CopyBlock
             text={`import ImageGrid from "react-image-grid-animator";`}
             language="javascript"
@@ -83,137 +81,143 @@ function App() {
         </Col>
       </Row>
       <Row className="justify-content-center mt-3">
-        <Col xs={12} md={6}>
+        <Col xs={12} lg={7} className="px-lg-0">
           <Label>Play ground</Label>
         </Col>
       </Row>
-      <Row className="mt-3">
-        <Col xs={12} md={6} className="d-flex justify-content-end">
-          <div className="c-card">
-            <div className="i-group">
-              <Label>Visible Count:</Label>
-              <NumericInput
-                id="text-input"
-                value={state.visibleCount}
-                min={1}
-                placeholder="Placeholder text"
-                onValueChange={(e) => {
-                  console.log(e);
-                  if (e < images.length && e > 0) {
-                    setState({ ...state, visibleCount: e });
-                  }
-                }}
-              />
-            </div>
-            <div className="i-group">
-              <Label>interval:</Label>
-              <NumericInput
-                id="text-input"
-                value={state.interval}
-                min={100}
-                placeholder="Placeholder text"
-                onValueChange={(e) => {
-                  setState({ ...state, interval: e });
-                }}
-              />
-            </div>
-            <div className="i-group">
-              <Label>Animation Item count:</Label>
-              <NumericInput
-                id="text-input"
-                value={state.animationItemcount}
-                min={1}
-                placeholder="Placeholder text"
-                disabled={state.randomized}
-                onValueChange={(e) => {
-                  setState({ ...state, animationItemcount: e });
-                }}
-              />
-            </div>
-            <div className="i-group">
-              <Label>Transition Duration:</Label>
-              <NumericInput
-                id="text-input"
-                min={1}
-                value={state.transitionDuration}
-                placeholder="Placeholder text"
-                onValueChange={(e) => {
-                  setState({ ...state, transitionDuration: e });
-                }}
-              />
-            </div>
-            <div className="i-group">
-              <Checkbox
-                checked={state.randomized}
-                label="Randomized"
-                onChange={(e: any) => {
-                  setState({ ...state, randomized: e.target.checked });
-                }}
-              />
-            </div>
-            <div
-              className="i-group"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                width: "100%",
-              }}
-            >
-              <Button
-                onClick={() => setIsActive(!isActive)}
-                intent={isActive ? "danger" : "primary"}
-                rightIcon={isActive ? "stop" : "play"}
+      <Row className="mt-2 justify-content-center">
+        <Col xs={12} lg={7} className="px-0">
+          <Container fluid>
+            <Row className="justify-content-center">
+              <Col
+                xs={12}
+                lg={6}
+                className="d-flex justify-content-lg-end justify-content-center px-lg-0 pr-lg-1"
               >
-                {isActive ? "Stop" : "Start"}
-              </Button>
-            </div>
-          </div>
-        </Col>
-        <Col xs={12} md={6} className="d-flex justify-content-start">
-          <div className="c-card">
-            <CopyBlock
-              text={`<ImageGrid 
+                <div className="c-card">
+                  <CopyBlock
+                    text={`<ImageGrid 
     images = {images}
     visibleCount = {${state.visibleCount}}
     interval = {${state.interval}}
     animationItemcount = {${state.animationItemcount}}
     transitionDuration = {${state.transitionDuration}}
-    randomized = {${state.randomized}}
     isActive = {${isActive}} 
 />`}
-              language="javascript"
-              showLineNumbers={true}
-              theme={dracula}
-              codeBlock={true}
+                    language="javascript"
+                    showLineNumbers={true}
+                    theme={dracula}
+                    codeBlock={true}
+                  />
+                </div>
+              </Col>
+              <Col
+                xs={12}
+                lg={6}
+                className="d-flex justify-content-lg-start justify-content-center mt-2 mt-lg-0 px-lg-0 pl-lg-1"
+              >
+                <div className="c-card">
+                  <div className="i-group">
+                    <Label>Visible Count:</Label>
+                    <NumericInput
+                      id="text-input"
+                      fill
+                      value={state.visibleCount}
+                      min={1}
+                      placeholder="Placeholder text"
+                      onValueChange={(e) => {
+                        console.log(e);
+                        if (e < images.length && e > 0) {
+                          setState({ ...state, visibleCount: e });
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="i-group">
+                    <Label>interval:</Label>
+                    <NumericInput
+                      id="text-input"
+                      value={state.interval}
+                      min={100}
+                      fill
+                      majorStepSize={501}
+                      stepSize={500}
+                      placeholder="Placeholder text"
+                      onValueChange={(e) => {
+                        setState({ ...state, interval: e });
+                      }}
+                    />
+                  </div>
+                  <div className="i-group">
+                    <Label>Animation Item count:</Label>
+                    <NumericInput
+                      id="text-input"
+                      value={state.animationItemcount}
+                      min={0}
+                      fill
+                      placeholder="Placeholder text"
+                      onValueChange={(e) => {
+                        setState({ ...state, animationItemcount: e });
+                      }}
+                    />
+                  </div>
+                  <div className="i-group">
+                    <Label>Transition Duration:</Label>
+                    <NumericInput
+                      id="text-input"
+                      min={200}
+                      majorStepSize={201}
+                      stepSize={200}
+                      fill
+                      value={state.transitionDuration}
+                      placeholder="Placeholder text"
+                      onValueChange={(e) => {
+                        setState({ ...state, transitionDuration: e });
+                      }}
+                    />
+                  </div>
+                  <div className="i-group">
+                    <Label>
+                      If animation item count value is "0" then it will be
+                      randomized.
+                    </Label>
+                  </div>
+                  <div
+                    className="i-group"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <Button
+                      onClick={() => setIsActive(!isActive)}
+                      intent={isActive ? "danger" : "primary"}
+                      rightIcon={isActive ? "stop" : "play"}
+                    >
+                      {isActive ? "Stop" : "Start"}
+                    </Button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-3">
+        <Col xs={12} lg={7} className="px-lg-0">
+          <div className="image-container">
+            <TestImageGrid
+              images={images}
+              visibleCount={state.visibleCount}
+              interval={state.interval}
+              animationItemcount={state.animationItemcount}
+              transitionDuration={state.transitionDuration}
+              isActive={isActive}
             />
           </div>
         </Col>
       </Row>
-
-      <div className="main-container">
-        <div className="image-container">
-          <ImageGrid
-            images={images}
-            visibleCount={state.visibleCount}
-            interval={state.interval}
-            animationItemcount={state.animationItemcount}
-            transitionDuration={state.transitionDuration}
-            randomized={state.randomized}
-            isActive={isActive}
-          />
-        </div>
-        <div className="image-container">
-          <ImageGrid
-            images={images}
-            visibleCount={state.visibleCount}
-            interval={state.interval}
-            animationItemcount={state.animationItemcount}
-            transitionDuration={state.transitionDuration}
-            randomized={state.randomized}
-            isActive={isActive}
-          />
-        </div>
-      </div>
     </Container>
   );
 }
