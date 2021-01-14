@@ -20,7 +20,8 @@ import i15 from "./logos/15.png";
 import { Button, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
-import TestImageGrid from "./component/index";
+import ImageGrid from "./component/index";
+// import ImageGrid from "react-image-grid-animator";
 
 function App() {
   const images = [
@@ -157,7 +158,12 @@ function App() {
                       fill
                       placeholder="Placeholder text"
                       onValueChange={(e) => {
-                        setState({ ...state, animationItemcount: e });
+                        if (
+                          (state.visibleCount + (state.visibleCount % 2)) / 2 >=
+                          e
+                        ) {
+                          setState({ ...state, animationItemcount: e });
+                        }
                       }}
                     />
                   </div>
@@ -207,7 +213,7 @@ function App() {
       <Row className="justify-content-center mt-3">
         <Col xs={12} lg={7} className="px-lg-0">
           <div className="image-container">
-            <TestImageGrid
+            <ImageGrid
               images={images}
               visibleCount={state.visibleCount}
               interval={state.interval}
