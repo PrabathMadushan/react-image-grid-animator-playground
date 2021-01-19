@@ -20,8 +20,8 @@ import i15 from "./logos/15.png";
 import { Button, HTMLSelect, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
-import ImageGrid from "./component/index";
-// import ImageGrid from "react-image-grid-animator";
+// import ImageGrid from "./component/index";
+import ImageGrid from "react-image-grid-animator";
 
 function App() {
   const images = [
@@ -44,17 +44,17 @@ function App() {
 
   const [isActive, setIsActive] = useState(true);
   const [state, setState] = useState<{
-    visibleCount: number,
-    interval: number,
-    animationItemcount: number,
-    transitionDuration: number,
-    transitionType:"SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
+    visibleCount: number;
+    interval: number;
+    animationItemcount: number;
+    transitionDuration: number;
+    transitionType: "SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
   }>({
     visibleCount: 10,
     interval: 2000,
     animationItemcount: 0,
     transitionDuration: 200,
-    transitionType:"FADE_AND_SCALE"
+    transitionType: "FADE_AND_SCALE",
   });
 
   return (
@@ -182,7 +182,10 @@ function App() {
                       value={state.transitionType}
                       placeholder="Placeholder text"
                       onChange={(e) => {
-                        setState({ ...state, transitionType: e.target.value as any });
+                        setState({
+                          ...state,
+                          transitionType: e.target.value as any,
+                        });
                       }}
                     >
                       <option value="SCALE">SCALE</option>
