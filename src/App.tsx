@@ -17,7 +17,7 @@ import i12 from "./logos/12.png";
 import i13 from "./logos/13.svg";
 import i14 from "./logos/14.svg";
 import i15 from "./logos/15.png";
-import { Button, Label, NumericInput } from "@blueprintjs/core";
+import { Button, HTMLSelect, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
 import ImageGrid from "./component/index";
@@ -43,11 +43,18 @@ function App() {
   ];
 
   const [isActive, setIsActive] = useState(true);
-  const [state, setState] = useState({
+  const [state, setState] = useState<{
+    visibleCount: number,
+    interval: number,
+    animationItemcount: number,
+    transitionDuration: number,
+    transitionType:"SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
+  }>({
     visibleCount: 10,
     interval: 2000,
     animationItemcount: 0,
     transitionDuration: 200,
+    transitionType:"FADE_AND_SCALE"
   });
 
   return (
@@ -168,6 +175,23 @@ function App() {
                     />
                   </div>
                   <div className="i-group">
+                    <Label>Transition Type:</Label>
+                    <HTMLSelect
+                      id="text-input"
+                      fill
+                      value={state.transitionType}
+                      placeholder="Placeholder text"
+                      onChange={(e) => {
+                        setState({ ...state, transitionType: e.target.value as any });
+                      }}
+                    >
+                      <option value="SCALE">SCALE</option>
+                      <option value="FADE">FADE</option>
+                      <option value="FADE_AND_SCALE">FADE_AND_SCALE</option>
+                      <option value="NONE">NONE</option>
+                    </HTMLSelect>
+                  </div>
+                  <div className="i-group">
                     <Label>Transition Duration:</Label>
                     <NumericInput
                       id="text-input"
@@ -220,6 +244,7 @@ function App() {
               animationItemcount={state.animationItemcount}
               transitionDuration={state.transitionDuration}
               isActive={isActive}
+              transitionType={state.transitionType}
             />
           </div>
         </Col>

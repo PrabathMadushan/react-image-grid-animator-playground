@@ -10,6 +10,7 @@ interface ImageGridProps {
   animationItemcount?: number;
   isActive?: boolean;
   transitionDuration: number;
+  transitionType?: "SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
 }
 
 interface IItem {
@@ -102,6 +103,7 @@ const ImageGrid = (props: ImageGridProps) => {
             transitionDuration={props.transitionDuration}
             key={index}
             image={item.image}
+            transitionType={props.transitionType || "FADE_AND_SCALE"}
           />
         ))}
       </div>
