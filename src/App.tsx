@@ -109,7 +109,7 @@ function App() {
     visibleCount = {${state.visibleCount}}
     interval = {${state.interval}}
     animationItemcount = {${state.animationItemcount}}
-    transitionType={${state.transitionType}}
+    transitionType={"${state.transitionType}"}
     transitionDuration = {${state.transitionDuration}}
     isActive = {${isActive}} 
 />`}
