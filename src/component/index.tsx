@@ -3,18 +3,29 @@ import Item from "./Item";
 import "./styles.scss";
 import { useInterval } from "./useInterval";
 
+export interface IItem {
+  id: string;
+  image: string;
+  imageStyles?:React.CSSProperties;
+  imageClass?:string;
+  topText?: string;
+  topTextStyle?:React.CSSProperties;
+  topTextClass?:string;
+  buttomText?: string;
+  buttomTextStyle?:React.CSSProperties;
+  buttomTextClass?:string;
+  onClick?: (id: string) => void;
+}
+
 interface ImageGridProps {
-  images: string[];
+  images: string[] | IItem[];
   visibleCount: number;
   interval: number;
   animationItemcount?: number;
   isActive?: boolean;
   transitionDuration: number;
   transitionType?: "SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
-}
-
-interface IItem {
-  image: string;
+  imageClass?: string;
 }
 
 const ImageGrid = (props: ImageGridProps) => {
@@ -24,9 +35,28 @@ const ImageGrid = (props: ImageGridProps) => {
   const { isActive: isActiveProp } = props;
 
   useEffect(() => {
-    const items: IItem[] = props.images.map((image, index) => ({
-      image,
-    }));
+    const items: IItem[] = (props.images as Array<string | IItem>).map(
+      (image: string | IItem, index: number) => {
+        if (typeof image === "string") {
+          return {
+            id: "none",
+            image,
+            topText: "",
+            buttomText: "",
+            onClick: (id: string) => {},
+          };
+        } else if (typeof image === "object") {
+          return image;
+        }
+        return {
+          id: "none",
+          image,
+          topText: "",
+          buttomText: "",
+          onClick: (id: string) => {},
+        };
+      }
+    );
     const invs: IItem[] = [];
     const vs: IItem[] = [];
 
@@ -46,7 +76,6 @@ const ImageGrid = (props: ImageGridProps) => {
       const tc = props.images.length;
       let vc = props.visibleCount;
       vc = (vc + (vc % 2)) / 2;
-      console.log("vc", vc);
       const ic = tc - props.visibleCount;
       let mxc = vc < ic ? vc : ic;
       const oneTimeCount =
@@ -63,8 +92,6 @@ const ImageGrid = (props: ImageGridProps) => {
         Math.random() < 0.5
           ? r_array01.filter((n) => n % 2 === 0)
           : r_array01.filter((n) => n % 2 === 1);
-
-      console.log("r_array01", r_array01, "maxc", oneTimeCount);
       for (
         let i: number = 0;
         i < (oneTimeCount > r_array01.length ? r_array01.length : oneTimeCount);
@@ -104,17 +131,12 @@ const ImageGrid = (props: ImageGridProps) => {
             key={index}
             image={item.image}
             transitionType={props.transitionType || "FADE_AND_SCALE"}
+            imageClass={props.imageClass}
           />
         ))}
       </div>
     </div>
   );
-};
-
-ImageGrid.defaultProps = {
-  animationItemcount: -1,
-  randomized: true,
-  isActive: true,
 };
 
 export default ImageGrid;

@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { IItem } from ".";
 import "./styles.scss";
 
 interface IProps {
-  image: string;
+  image: string | IItem;
   transitionDuration: number;
   transitionType: "SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
+  imageClass?: string;
 }
 
 const Item = (props: IProps) => {
@@ -44,11 +46,18 @@ const Item = (props: IProps) => {
           : `item ${getTreansitionTypeClasse("hide")}`
       }
     >
-      <img
-        src={imageStste}
-        alt=""
+      <div
+        className="iitem"
         style={{ transitionDuration: `${props.transitionDuration}ms` }}
-      />
+      >
+        <label>Text Top</label>
+        <img
+          src={typeof imageStste === "string" ? imageStste : imageStste.image}
+          alt=""
+          className={props.imageClass}
+        />
+        <label>Text Bottom</label>
+      </div>
     </div>
   );
 };

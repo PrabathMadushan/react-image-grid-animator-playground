@@ -20,8 +20,8 @@ import i15 from "./logos/15.png";
 import { Button, HTMLSelect, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
-// import ImageGrid from "./component/index";
-import ImageGrid from "react-image-grid-animator";
+import ImageGrid from "./component/index";
+// import ImageGrid from "react-image-grid-animator";
 
 function App() {
   const images = [
@@ -249,6 +249,7 @@ function App() {
               transitionDuration={state.transitionDuration}
               isActive={isActive}
               transitionType={state.transitionType}
+              imageClass="next"
             />
           </div>
         </Col>
