@@ -38,6 +38,7 @@ const ImageGrid = (props: ImageGridProps) => {
     const items: IItem[] = (props.images as Array<string | IItem>).map(
       (image: string | IItem, index: number) => {
         if (typeof image === "string") {
+          console.log("string")
           return {
             id: "none",
             image,
@@ -46,6 +47,7 @@ const ImageGrid = (props: ImageGridProps) => {
             onClick: (id: string) => {},
           };
         } else if (typeof image === "object") {
+          console.log("object")
           return image;
         }
         return {
@@ -129,7 +131,11 @@ const ImageGrid = (props: ImageGridProps) => {
           <Item
             transitionDuration={props.transitionDuration}
             key={index}
-            image={item.image}
+            image={item}
+            id={item.id}
+            onClick={(id)=>{
+              if(item.onClick)item.onClick(id)
+            }}
             transitionType={props.transitionType || "FADE_AND_SCALE"}
             imageClass={props.imageClass}
           />

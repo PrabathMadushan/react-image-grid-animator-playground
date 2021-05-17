@@ -20,28 +20,46 @@ import i15 from "./logos/15.png";
 import { Button, HTMLSelect, Label, NumericInput } from "@blueprintjs/core";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { Col, Container, Row } from "react-bootstrap";
-import ImageGrid from "./component/index";
+import ImageGrid, { IItem } from "./component/index";
 // import ImageGrid from "react-image-grid-animator";
 
 function App() {
-  const images = [
-    i1,
-    i2,
-    i3,
-    i4,
-    i5,
-    i6,
-    i7,
-    i8,
-    i9,
-    i10,
-    i11,
-    i12,
-    i13,
-    i14,
-    i15,
+  const images:IItem[] = [
+    {id:"1",image:i1,onClick:(id)=>{console.log(id)},buttomText:"kamal",buttomTextStyle:{color:"red"},topText:"nimal"},
+    {id:"2",image:i2,onClick:(id)=>{console.log(id)}},
+    {id:"3",image:i3,onClick:(id)=>{console.log(id)}},
+    {id:"4",image:i4,onClick:(id)=>{console.log(id)}},
+    {id:"5",image:i5,onClick:(id)=>{console.log(id)}},
+    {id:"6",image:i6,onClick:(id)=>{console.log(id)}},
+    {id:"7",image:i7,onClick:(id)=>{console.log(id)}},
+    {id:"8",image:i8,onClick:(id)=>{console.log(id)}},
+    {id:"9",image:i9,onClick:(id)=>{console.log(id)}},
+    {id:"10",image:i10,onClick:(id)=>{console.log(id)}},
+    {id:"11",image:i11,onClick:(id)=>{console.log(id)}},
+    {id:"12",image:i12,onClick:(id)=>{console.log(id)}},
+    {id:"13",image:i13,onClick:(id)=>{console.log(id)}},
+    {id:"14",image:i14,onClick:(id)=>{console.log(id)}},
+    {id:"15",image:i15,onClick:(id)=>{console.log(id)}},
+    
   ];
 
+  // const images2:string[] = [
+  //   i1,
+  //   i2,
+  //   i3,
+  //   i4,
+  //   i5,
+  //   i6,
+  //   i7,
+  //   i8,
+  //   i9,
+  //   i10,
+  //   i11,
+  //   i12,
+  //   i13,
+  //   i14,
+  //   i15,
+  // ];
   const [isActive, setIsActive] = useState(true);
   const [state, setState] = useState<{
     visibleCount: number;

@@ -4,9 +4,11 @@ import "./styles.scss";
 
 interface IProps {
   image: string | IItem;
+  id: string;
   transitionDuration: number;
   transitionType: "SCALE" | "FADE" | "FADE_AND_SCALE" | "NONE";
   imageClass?: string;
+  onClick?: (id: string) => void;
 }
 
 const Item = (props: IProps) => {
@@ -46,18 +48,37 @@ const Item = (props: IProps) => {
           : `item ${getTreansitionTypeClasse("hide")}`
       }
     >
-      <div
-        className="iitem"
-        style={{ transitionDuration: `${props.transitionDuration}ms` }}
-      >
-        <label>Text Top</label>
-        <img
-          src={typeof imageStste === "string" ? imageStste : imageStste.image}
-          alt=""
-          className={props.imageClass}
-        />
-        <label>Text Bottom</label>
-      </div>
+      {typeof props.image === "string" ? (
+        <div
+          className="iitem"
+          style={{ transitionDuration: `${props.transitionDuration}ms` }}
+          onClick={()=>{
+            console.log("ok string image")
+          }}
+        >
+          <img
+            src={typeof imageStste === "string" ? imageStste : imageStste.image}
+            alt=""
+            className={props.imageClass}
+          />
+        </div>
+      ) : (
+        <div
+          className="iitem"
+          style={{ transitionDuration: `${props.transitionDuration}ms` }}
+          onClick={() => {
+            if (props.onClick) props.onClick(props.id);
+          }}
+        >
+          {props.image.topText && <label style={props.image.topTextStyle}>{props.image.topText}</label>}
+          <img
+            src={typeof imageStste === "string" ? imageStste : imageStste.image}
+            alt=""
+            className={props.image.imageClass}
+          />
+          {props.image.buttomText && <label style={props.image.buttomTextStyle}>{props.image.buttomText}</label>}
+        </div>
+      )}
     </div>
   );
 };
