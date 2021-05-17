@@ -19,6 +19,9 @@
             width: 100%;
             transition-property: all;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             label{
                 color: black;
                 font-size: 10px;

@@ -52,8 +52,8 @@ const Item = (props: IProps) => {
         <div
           className="iitem"
           style={{ transitionDuration: `${props.transitionDuration}ms` }}
-          onClick={()=>{
-            console.log("ok string image")
+          onClick={() => {
+            console.log("ok string image");
           }}
         >
           <img
@@ -70,13 +70,27 @@ const Item = (props: IProps) => {
             if (props.onClick) props.onClick(props.id);
           }}
         >
-          {props.image.topText && <label style={props.image.topTextStyle}>{props.image.topText}</label>}
+          {props.image.topText && (
+            <label
+              className={props.image.topTextClass || ""}
+              style={props.image.topTextStyle}
+            >
+              {props.image.topText}
+            </label>
+          )}
           <img
             src={typeof imageStste === "string" ? imageStste : imageStste.image}
             alt=""
             className={props.image.imageClass}
           />
-          {props.image.buttomText && <label style={props.image.buttomTextStyle}>{props.image.buttomText}</label>}
+          {props.image.buttomText && (
+            <label
+              className={props.image.buttomTextClass || ""}
+              style={props.image.buttomTextStyle}
+            >
+              {props.image.buttomText}
+            </label>
+          )}
         </div>
       )}
     </div>
